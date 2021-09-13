@@ -1,24 +1,9 @@
-import React from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
+import React from "react";
 
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-
-
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import Copyright from './components/Copyright';
-
-import Dashboard from './views/Dashboard';
-import Pedidos   from './views/Pedidos';
-import Comercios from './views/Comercios';
-
-
-import './App.css';
-
-
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
 const drawerWidth = 240;
 
@@ -102,52 +87,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function App() {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+const Comercios = () => {
+    const classes = useStyles();
+    
+    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <Router>
-        <Header 
-          open={open} 
-          setOpen={setOpen} 
-          handleDrawerOpen={handleDrawerOpen} 
-        />
-
-        <Sidebar 
-          open={open} 
-          setOpen={setOpen} 
-          handleDrawerClose={handleDrawerClose} 
-        />
-        
-        <main className={classes.content}>
-          <div className={classes.appBarSpacer} />
-          <Container maxWidth="lg" className={classes.container}>
-            <Switch>
-              <Route path="/" component={Dashboard}  exact/>
-              <Route path="/pedidos" component={Pedidos}/>
-              <Route path="/comercios" component={Comercios}/>
-              <Route path="/clientes" component=""/>
-              <Route path="/productos" component=""/>
-              <Route path="/reportes" component=""/>
-            </Switch>
-            
-            <Box pt={4}>
-              <Copyright />
-            </Box>
-          </Container>
-        </main>
-      </Router>
-    </div>
-  );
+    return (
+        <>
+        <h1>Comercios</h1>
+        <Grid container spacing={3}>
+            {/* listado Comercios */}
+            <Grid item xs={12} md={12} lg={12}>
+                <Paper className={fixedHeightPaper}>
+                    Listado Comercios
+                </Paper>
+            </Grid>
+        </Grid>
+        </>
+    )
 }
 
-export default App;
+export default Comercios;
