@@ -9,7 +9,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -19,8 +18,9 @@ import { getComercios } from '../../services/ComerciosService';
 
 const useStyles = makeStyles({
     table: {
-      minWidth: 650,
+      minWidth: '100vh',
     },
+    
   });
 
 const Listado = () => {
