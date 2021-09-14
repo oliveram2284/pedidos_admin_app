@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import { Redirect } from 'react-router';
-
+import { useParams } from "react-router-dom";
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -16,7 +16,7 @@ import {
 } from '@material-ui/core';
 
 
-import { saveComercio } from '../../services/ComerciosService';
+import { getComercio, saveComercio } from '../../services/ComerciosService';
 import { getRubros }    from '../../services/RubrosService';
 
 const useStyles = makeStyles((theme) => ({
@@ -46,6 +46,8 @@ const useStyles = makeStyles((theme) => ({
 
 const ComercioForm = () => {
     
+    const { id } = useParams();
+
     const classes = useStyles();
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
     
@@ -64,14 +66,17 @@ const ComercioForm = () => {
         getRubros().then(response => {
             setRubros(response);
         })
-    },[]);
 
+        if (id) {
+            getComercio(id).then(response => {
+                setComercio(response);
+            })
+        }
+    },[]);
+    
     const handleOnChange = (event) => {
         const {name,value} = event.target
-        const newComercio  = Object.assign({}, comercio);
-        newComercio[name]  = value;
-        setComercio(newComercio);
-        console.log("==> comercio: ",comercio);
+        setComercio({...comercio, [name]:value});
     }
 
     const handleOnSubmit = (event) => {
