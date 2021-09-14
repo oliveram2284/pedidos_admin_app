@@ -8,6 +8,7 @@ import AddIcon from '@material-ui/icons/Add';
 
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 import { green } from '@material-ui/core/colors';
 import Listado from './Comercios/Listado';
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   container: {
-    paddingTop: theme.spacing(4),
+    paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(4),
   },
   paper: {
@@ -41,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: green[600],
     },
+    justify:"space-between"
   },
 }));
 
@@ -54,17 +56,19 @@ const Comercios = () => {
           {/* listado Comercios */}
           <Grid item xs={12} md={12} lg={12}>
             <h1>Comercios</h1>
-            <Fab component={Link} 
-              color="primary" 
-              aria-label="Agregar Comercio" 
+            <Button 
+              size="small"
+              component={Link}               
+              to='/comercios/add' 
               align='right'
-              to='/comercios/add'
-              >
-              <AddIcon />
-            </Fab>
-              <Paper className={fixedHeightPaper}>
-                <Listado/>
-              </Paper>
+              variant="contained" 
+              color="primary">  
+              <AddIcon /> Agregar 
+            </Button>
+            <Paper className={fixedHeightPaper}>           
+              
+              <Listado/>
+            </Paper>
           </Grid>
         </Grid>
       </>
