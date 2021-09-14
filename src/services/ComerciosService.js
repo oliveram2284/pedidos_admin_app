@@ -3,22 +3,22 @@ const getComercio = (idComercio) => {
     const apiUrl = `http://pedidos_backend.test/api/comercios/${idComercio}`
  
     return fetch(apiUrl)
-     .then(res => {
-         return res.json()
-     }).then(response => {
-         return response
-     })
+    .then(res => {
+        return res.json()
+    }).then(response => {
+        return response
+    })
  }
 
  const  getComercios = () =>{
     const apiUrl = 'http://pedidos_backend.test/api/comercios'
  
     return fetch(apiUrl)
-     .then(res => {
-         return res.json()
-     }).then(response => {
-         return response
-     })
+    .then(res => {
+        return res.json()
+    }).then(response => {
+        return response
+    })
  }
 
  
@@ -45,9 +45,29 @@ const saveComercio = (comercio) => {
 
 }
 
+const cambiarEstadoComercio = (idComercio, estado) => {
+
+    const apiUrl = `/comercios/${idComercio}/${(estado)?'disable':'enable'}` ;
+
+    return fetch(`http://pedidos_backend.test/api${apiUrl}`,
+        {
+        method: 'GET',
+        mode: 'cors',
+        headers:{
+            "access-control-allow-origin" : "*",
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+    .then(res => {
+        return res.json()
+    }).then(response => {
+        return response
+    })
+}
 
 export {
     getComercio,
     getComercios,
-    saveComercio
+    saveComercio,
+    cambiarEstadoComercio
 };

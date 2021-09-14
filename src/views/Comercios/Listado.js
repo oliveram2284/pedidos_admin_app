@@ -13,8 +13,10 @@ import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
+import CheckBoxOutlineBlankOutlinedIcon from '@material-ui/icons/CheckBoxOutlineBlankOutlined';
 import { green,red,teal } from '@material-ui/core/colors';
-import { getComercios } from '../../services/ComerciosService';
+import { getComercios, cambiarEstadoComercio } from '../../services/ComerciosService';
 
 const useStyles = makeStyles({
     table: {
@@ -38,6 +40,22 @@ const Listado = () => {
         })
     },[])
 
+    const handleEstado = (comercio, index) => {
+        const estado = ( comercio.estado === 1);
+        cambiarEstadoComercio(comercio.id, estado ).then((response)=>{
+
+            const prevComercios = comercios.map((prevComercio) => {
+                if( comercio.id === prevComercio.id  ) {
+                    prevComercio.estado = (estado)? 0:1;
+                }
+                return prevComercio;
+            });
+            setComercios(prevComercios);
+            /*getComercios().then(_comercios => {
+                setComercios(_comercios);
+            })*/
+        });
+    }
     return (
         <>
             <TableContainer component={Paper}>
@@ -47,22 +65,22 @@ const Listado = () => {
                     <TableCell>Id</TableCell>
                     <TableCell align="left">Nombre</TableCell>
                     <TableCell align="left">Rubro</TableCell>
-                    <TableCell align="center">Estado</TableCell>
+                    <TableCell align="center">Habilitado</TableCell>
                     <TableCell align="center">Acciones</TableCell>
                 </TableRow>
                 </TableHead>
                 <TableBody>
                     {
-                        comercios.map((comercio) => {
+                        comercios.map((comercio, index) => {
                             return(
                                 <TableRow key={comercio.id}>
                                     <TableCell align="center">{comercio.id}</TableCell>
                                     <TableCell align="left">{comercio.nombre}</TableCell>
                                     <TableCell align="left">{comercio.rubro.nombre}</TableCell>
-                                    <TableCell align="center">
+                                    <TableCell align="center" onClick={() => handleEstado(comercio, index)}>
                                         {(comercio.estado === 1) ?
-                                            <span className={classes.span_success}>Habilitado</span>:
-                                            <span className={classes.span_error}>Deshabilitado</span>
+                                            <span className={classes.span_success}><CheckBoxOutlinedIcon/></span>:
+                                            <span className={classes.span_error}><CheckBoxOutlineBlankOutlinedIcon/></span>
                                         }
                                         
                                         </TableCell>
