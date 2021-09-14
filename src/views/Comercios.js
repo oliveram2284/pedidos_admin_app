@@ -9,7 +9,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
-import { green,red,teal } from '@material-ui/core/colors';
+import { green } from '@material-ui/core/colors';
 import Listado from './Comercios/Listado';
 
 const useStyles = makeStyles((theme) => ({
