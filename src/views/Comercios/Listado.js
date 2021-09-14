@@ -20,7 +20,12 @@ const useStyles = makeStyles({
     table: {
       minWidth: '100vh',
     },
-    
+    span_success:{
+        color: green[700],        
+    },
+    span_error:{        
+        color: red[700],
+    }
   });
 
 const Listado = () => {
@@ -54,7 +59,13 @@ const Listado = () => {
                                     <TableCell align="center">{comercio.id}</TableCell>
                                     <TableCell align="left">{comercio.nombre}</TableCell>
                                     <TableCell align="left">{comercio.rubro.nombre}</TableCell>
-                                    <TableCell align="center">{(comercio.estado) ?'Habilitado':'Deshabilitado'}</TableCell>
+                                    <TableCell align="center">
+                                        {(comercio.estado === 1) ?
+                                            <span className={classes.span_success}>Habilitado</span>:
+                                            <span className={classes.span_error}>Deshabilitado</span>
+                                        }
+                                        
+                                        </TableCell>
                                     <TableCell align="center">
                                         <IconButton 
                                             fontSize="small" 
@@ -65,12 +76,14 @@ const Listado = () => {
                                             >
                                             <EditIcon />
                                         </IconButton>
+                                        {/* 
                                         <IconButton fontSize="small" style={{ color: red[500] }} aria-label="Eliminar Comercio" component="span">
                                             <DeleteIcon />
                                         </IconButton>
                                         <IconButton fontSize="small" style={{ color: teal[500] }} aria-label="Ver Comercio" component="span">
                                             <VisibilityIcon />
-                                        </IconButton>                                   
+                                        </IconButton>           
+                                        */}                        
                                     </TableCell>
                                 </TableRow>
                             )
