@@ -1,78 +1,26 @@
 import React from "react";
+import {Link} from 'react-router-dom';
 
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
-const drawerWidth = 240;
+import { green } from '@material-ui/core/colors';
+import Listado from './Comercios/Listado';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-  },
-  toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
-  },
-  toolbarIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: 36,
-  },
-  menuButtonHidden: {
-    display: 'none',
-  },
-  title: {
-    flexGrow: 1,
-  },
-  drawerPaper: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerPaperClose: {
-    overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    width: theme.spacing(7),
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9),
+    '& > *': {
+      margin: theme.spacing(1),
     },
   },
-  appBarSpacer: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    height: '100vh',
-    overflow: 'auto',
-  },
   container: {
-    paddingTop: theme.spacing(4),
+    paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(4),
   },
   paper: {
@@ -82,28 +30,48 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 240,
+    height: '100vh',
+  },
+  
+  extendedIcon: {
+    marginRight: theme.spacing(1),
+  },
+  fabGreen: {
+    color: theme.palette.common.white,
+    backgroundColor: green[500],
+    '&:hover': {
+      backgroundColor: green[600],
+    },
+    justify:"space-between"
   },
 }));
-
 
 const Comercios = () => {
     const classes = useStyles();
     
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
     return (
-        <>
-        <h1>Comercios</h1>
-        <Grid container spacing={3}>
-            {/* listado Comercios */}
-            <Grid item xs={12} md={12} lg={12}>
-                <Paper className={fixedHeightPaper}>
-                    Listado Comercios
-                </Paper>
-            </Grid>
+      <>        
+        <Grid container spacing={1}>        
+          {/* listado Comercios */}
+          <Grid item xs={12} md={12} lg={12}>
+            <h1>Comercios</h1>
+            <Button 
+              size="small"
+              component={Link}               
+              to='/comercios/add' 
+              align='right'
+              variant="contained" 
+              color="primary">  
+              <AddIcon /> Agregar 
+            </Button>
+            <Paper className={fixedHeightPaper}>           
+              
+              <Listado/>
+            </Paper>
+          </Grid>
         </Grid>
-        </>
+      </>
     )
 }
 
