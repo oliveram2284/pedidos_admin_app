@@ -82,9 +82,7 @@ const ComercioForm = () => {
     const handleOnSubmit = (event) => {
         event.preventDefault() ;   
 
-        console.log("==> handleOnSubmit -  comercio: ",comercio);
         saveComercio(comercio).then((response)=>{
-            console.log(response);
             setRedirect(true);           
         }).catch((errorResponse)=>{
             console.log("errorResponse");
