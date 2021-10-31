@@ -11,11 +11,11 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
-import VisibilityIcon from '@material-ui/icons/Visibility';
+//import DeleteIcon from '@material-ui/icons/Delete';
+//import VisibilityIcon from '@material-ui/icons/Visibility';
 import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
 import CheckBoxOutlineBlankOutlinedIcon from '@material-ui/icons/CheckBoxOutlineBlankOutlined';
-import { green,red,teal } from '@material-ui/core/colors';
+import { green,red } from '@material-ui/core/colors';
 import { getComercios, cambiarEstadoComercio } from '../../services/ComerciosService';
 
 const useStyles = makeStyles({
@@ -84,25 +84,25 @@ const Listado = () => {
                                         }
                                         
                                         </TableCell>
-                                    <TableCell align="center">
-                                        <IconButton 
-                                            fontSize="small" 
-                                            style={{ color: green[500] }} 
-                                            aria-label="Editar Comercio" 
-                                            component={Link}
-                                            to={`/comercios/${comercio.id}/edit`}
-                                            >
-                                            <EditIcon />
-                                        </IconButton>
-                                        {/* 
-                                        <IconButton fontSize="small" style={{ color: red[500] }} aria-label="Eliminar Comercio" component="span">
-                                            <DeleteIcon />
-                                        </IconButton>
-                                        <IconButton fontSize="small" style={{ color: teal[500] }} aria-label="Ver Comercio" component="span">
-                                            <VisibilityIcon />
-                                        </IconButton>           
-                                        */}                        
-                                    </TableCell>
+                                        <TableCell align="center">
+                                            <IconButton 
+                                                fontSize="small" 
+                                                style={{ color: green[500] }} 
+                                                aria-label="Editar Comercio" 
+                                                component={Link}
+                                                to={`/comercios/${comercio.id}/edit`}
+                                                >
+                                                <EditIcon />
+                                            </IconButton>
+                                            {/* 
+                                            <IconButton fontSize="small" style={{ color: red[500] }} aria-label="Eliminar Comercio" component="span">
+                                                <DeleteIcon />
+                                            </IconButton>
+                                            <IconButton fontSize="small" style={{ color: teal[500] }} aria-label="Ver Comercio" component="span">
+                                                <VisibilityIcon />
+                                            </IconButton>           
+                                            */}                        
+                                        </TableCell>
                                 </TableRow>
                             )
                         })

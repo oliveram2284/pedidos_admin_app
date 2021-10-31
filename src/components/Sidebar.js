@@ -8,7 +8,8 @@ import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import Drawer from '@material-ui/core/Drawer';
 
-import { mainListItems} from '../listItems';
+import MainMenuItems from '../listItems';
+
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -50,10 +51,11 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const Sidebar = ({open, handleDrawerClose }) => {
+const Sidebar = ({open, handleDrawerClose, userData}) => {
 
     const classes = useStyles();
-
+    
+  
     return (
         <Drawer
             variant="permanent"
@@ -68,9 +70,10 @@ const Sidebar = ({open, handleDrawerClose }) => {
             </IconButton>
             </div>
             <Divider />
-            <List>{mainListItems}</List>
+            <List>
+              <MainMenuItems userData={userData}/>
+            </List>
             <Divider />
-            {/*  */}
         </Drawer>
     )
 }
