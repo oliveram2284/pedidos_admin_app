@@ -11,6 +11,70 @@ import LayersIcon from '@material-ui/icons/Layers';
 import StoreIcon from '@material-ui/icons/Store';
 
 
+const MainMenuItems = ({userData}) => {
+  
+  console.log("=====> MainMenuItems userData: ", userData)
+
+  const items = [
+    {
+      text: 'Inicio',
+      to: '/',
+      icon: <DashboardIcon />,
+      isAdmin: false,
+    },
+    {
+      text: 'Comercios',
+      to: '/comercios',
+      icon: <StoreIcon />,
+      isAdmin: true,
+    },
+    {
+      text: 'Pedidos',
+      to: '/pedidos',
+      icon: <ShoppingCartIcon />,
+      isAdmin: true,
+    },
+    {
+      text: 'Productos',
+      to: '/productos',
+      icon: <LayersIcon />,
+      isAdmin: false,
+    },
+    {
+      text: 'Clientes',
+      to: '/clientes',
+      icon: <PeopleIcon />,
+      isAdmin: false,
+    },
+    {
+      text: 'Reportes',
+      to: '/reportes',
+      icon: <BarChartIcon />,
+      isAdmin: false,
+    },
+  ]
+
+  
+  return (
+    <>
+      {
+        items.map((item) => {
+          return <>            
+            <ListItem component={Link} to={item.to}>
+              <ListItemIcon>
+                {item.icon}
+              </ListItemIcon>
+              <ListItemText primary={item.text} />
+            </ListItem>
+          </>
+        })
+      }
+    </>
+  )
+}
+
+export default MainMenuItems;
+/*
 export const mainListItems = (
   <div>
     <ListItem component={Link} to='/'>
@@ -50,7 +114,7 @@ export const mainListItems = (
       <ListItemText primary="Reportes" />
     </ListItem>
   </div>
-);
+);*/
 /*
 export const secondaryListItems = (
   <div>
