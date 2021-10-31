@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
 import Grid from '@material-ui/core/Grid';
@@ -44,6 +43,11 @@ const useStyles = makeStyles((theme) => ({
     },
     justify:"space-between"
   },
+  buttonHeader: {    
+    padding: '10px',
+    textAlign: 'right',
+    marginBottom: '5px',
+  }
 }));
 
 const Comercios = () => {
@@ -56,15 +60,19 @@ const Comercios = () => {
           {/* listado Comercios */}
           <Grid item xs={12} md={12} lg={12}>
             <h1>Comercios</h1>
-            <Button 
-              size="small"
-              component={Link}               
-              to='/comercios/add' 
-              align='right'
-              variant="contained" 
-              color="primary">  
-              <AddIcon /> Agregar 
-            </Button>
+            <Grid item xs={12} md={12} lg={12}>
+              <Paper className={classes.buttonHeader}>
+                <Button 
+                  size="small"
+                  component={Link}               
+                  to='/comercios/add' 
+                  align='right'
+                  variant="contained" 
+                  color="primary">  
+                  <AddIcon /> Agregar 
+                </Button>
+              </Paper>
+            </Grid>
             <Paper className={fixedHeightPaper}>           
               
               <Listado/>

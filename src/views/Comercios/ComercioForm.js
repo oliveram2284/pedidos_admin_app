@@ -72,7 +72,7 @@ const ComercioForm = () => {
                 setComercio(response);
             })
         }
-    },[]);
+    },[id]);
     
     const handleOnChange = (event) => {
         const {name,value} = event.target
